@@ -19,7 +19,20 @@ mongoose.connect(process.env.MONGO_URI)
     process.exit(1);
   });
 
-// Sử dụng route cho API tại đường dẫn /api/mangoes
+  // Hàm ping website
+async function pingWebsite() {
+  try {
+    const response = await axios.get('https://mango-backend-iox7.onrender.com');
+    console.log('Ping successful:', response.status);
+  } catch (error) {
+    console.error('Ping failed:', error.message);
+  }
+}
+
+// Chạy ping mỗi 10 giây
+setInterval(pingWebsite, 9000);
+
+
 app.use('/api/mangoes', require('./routes/mango.route'));
 
 module.exports = app;
