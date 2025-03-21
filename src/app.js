@@ -10,7 +10,10 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://khanhhuy.space'],
+  credentials: true
+}));
 app.use(express.json());
 
 
@@ -36,5 +39,11 @@ setInterval(pingWebsite, 9000);
 
 
 app.use('/api/mangoes', require('./routes/mango.route'));
+app.use('/api/auth', require('./routes/auth.route'));
+
+// Route mặc định
+app.get('/', (req, res) => {
+  res.send('API is running');
+});
 
 module.exports = app;
