@@ -1,22 +1,16 @@
 const express = require('express');
-const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const axios = require('axios');
-
 
 dotenv.config();
 
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: ['http://localhost:3000', 'https://khanhhuy.space'],
-  credentials: true
-}));
 app.use(express.json());
 
-
+// Kết nối MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => {
@@ -24,10 +18,10 @@ mongoose.connect(process.env.MONGO_URI)
     process.exit(1);
   });
 
-  // Hàm ping website
+// Hàm ping website
 async function pingWebsite() {
   try {
-    const response = await axios.get('https://mango-backend-q7bx.onrender.com/api/mangoes');
+    const response = await axios.get('https://facekbook.com');
     console.log('Ping successful:', response.status);
   } catch (error) {
     console.error('Ping failed:', error.message);
@@ -37,7 +31,7 @@ async function pingWebsite() {
 // Chạy ping mỗi 10 giây
 setInterval(pingWebsite, 9000);
 
-
+// Routes
 app.use('/api/mangoes', require('./routes/mango.route'));
 app.use('/api/auth', require('./routes/auth.route'));
 
