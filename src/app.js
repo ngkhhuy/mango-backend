@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const axios = require('axios');
-const cors = require('cors');
 
 dotenv.config();
 
@@ -10,7 +9,6 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
 
 // Kết nối MongoDB
 mongoose.connect(process.env.MONGO_URI)
