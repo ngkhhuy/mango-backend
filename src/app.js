@@ -37,7 +37,7 @@ async function pingWebsite() {
 }
 
 // Chạy ping mỗi 10 giây
-setInterval(pingWebsite, 9000);
+setInterval(pingWebsite, 60000);
 
 // Routes
 app.use('/api/mangoes', require('./routes/mango.route'));
