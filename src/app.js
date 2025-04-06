@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const axios = require('axios');
+const cors = require('cors');
 
 dotenv.config();
 
@@ -9,6 +10,13 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+
+// Cấu hình CORS chi tiết hơn
+app.use(cors({
+  origin: ['https://www.khanhhuy.space', 'http://localhost:3000'], // Các domain được phép
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // Kết nối MongoDB
 mongoose.connect(process.env.MONGO_URI)
