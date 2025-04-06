@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGO_URI)
 // Hàm ping website
 async function pingWebsite() {
   try {
-    const response = await axios.get('https://mango-backend-fnhz.onrender.com/api/mangoes');
+    const response = await axios.get('https://mango-backend-ub33.onrender.com/api/mangoes');
     console.log('Ping successful:', response.status);
   } catch (error) {
     console.error('Ping failed:', error.message);
